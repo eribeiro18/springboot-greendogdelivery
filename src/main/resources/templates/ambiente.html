@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 layout:fragment="header">
+		Ambiente - <small>Spring Actuator</small>
+	</h1>
+	<div layout:fragment="content" class="container">
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>link</th>
+						<th>descrição</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><p>
+								<a href="#" th:href="@{/actuator}">actuator</a>
+							</p></td>
+						<td><p>Lista todos os links disponíveis.</p></td>
+					</tr>
+					<tr>
+						<td><p>
+								<a href="#" th:href="@{/dump}">dump</a>
+							</p></td>
+						<td><p>Faz um thread dump.</p></td>
+					</tr>
+					<tr>
+						<td><p>
+								<a href="#" th:href="@{/env}">env</a>
+							</p></td>
+						<td><p>Mostra properties do CE do Spring.</p></td>
+					</tr>
+					<tr>
+						<td><p>
+								<a href="#" th:href="@{/health}">health</a>
+							</p></td>
+						<td><p>Mostra informações do status da aplicação.</p></td>
+					</tr>
+					<tr>
+						<td><p>
+								<a href="#" th:href="@{/metrics}">metrics</a>
+							</p></td>
+						<td><p>Mostra métricas da aplicação.</p></td>
+					</tr>
+					<tr>
+						<td><p>
+								<a href="#" th:href="@{/mappings}">mappings</a>
+							</p></td>
+						<td><p>Exibe os caminhos dos @RequestMapping.</p></td>
+					</tr>
+					<tr>
+						<td><p>
+								<a href="#" th:href="@{/trace}">trace</a>
+							</p></td>
+						<td><p>Exibe o trace dos últimos 100 requests HTTP.</p></td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <a href="#" th:href="@{/properties}"
+				class="btn btn-large btn-success">System Properties</a>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

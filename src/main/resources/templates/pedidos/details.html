@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="'Pedido: '+${pedido.id}"></title>
+</head>
+<body>
+	<h1 layout:fragment="header" th:text="'Pedido: '+${pedido.id}"></h1>
+	<div layout:fragment="content" class="well">
+		<form th:action="@{/pedidos/update/(form)}" 
+			  th:object="${pedido}" 
+			  method="post" action="#">
+		
+			<label class="col-sm-12" th:text="'Cliente: '+${pedido.cliente.nome}+', Data Pedido: '+${pedido.data}"></label>
+			<input type="hidden" th:value="${pedido.cliente}" th:field="${pedido.cliente}"/>
+			<input type="hidden" th:value="${pedido.id}" th:field="${pedido.id}"/>
+			<input type="hidden" th:value="${pedido.data}" th:field="${pedido.data}"/>
+			<input type="hidden" th:value="${pedido.itens}" th:field="${pedido.itens}"/>
+			
+			<div class="container">				
+				<div class="row col-sm-10">
+					<label class="alert-info">Itens do pedido</label>
+				</div>
+				<div class="row col-sm-11 pull-left">				
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<td>ID</td>
+								<td>Nome</td>
+								<td>Preço</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${pedido.itens}">
+								<td><label th:text="${item.id}"></label></td>
+								<td><label th:text="${item.nome}"></label></td>
+								<td><label th:text="${item.preco}"></label></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row col-sm-11">
+					<label class="col-sm-2">Valor Total R$:</label>
+					<input class="col-sm-1" type="text" th:value="${pedido.valorTotal}" th:field="${pedido.valorTotal}" readonly="readonly" />
+					<button class="col-sm-2 pull-right" type="submit">Confirmar Dados</button>
+				</div>				
+			</div>
+			<div class="pull-left">
+				<a th:href="@{'/pedidos/alterar/'+${pedido.id}}">Alterar</a> |
+				<a th:href="@{'/pedidos/remover/'+${pedido.id}}">Remover</a> |
+				<a th:href="@{'/pedidos/'}">Voltar</a>
+			</div>
+		</form>
+	</div>	
+</body>
+</html>
